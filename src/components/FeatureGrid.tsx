@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FlaskConical, Bot, UserRound, Activity, Bandage, HeartPulse } from 'lucide-react';
 
@@ -35,7 +34,7 @@ const FeatureGrid: React.FC = () => {
     <section className="bg-black py-16 w-full overflow-hidden animate-section">
       <div className="ndur-container">
         <div className="text-center mb-12">
-          <h2 className="h2 mb-2">Why NDÜR.AI?</h2>
+          <h2 className="h2 mb-2">Why NDÜR?</h2>
           <p className="text-ndur-red font-medium mb-8">Because average doesn't cut it.</p>
           
           <p className="body-large max-w-3xl mx-auto mb-12">
@@ -60,11 +59,19 @@ const FeatureGrid: React.FC = () => {
           ))}
         </div>
         
-        <div className="bg-ndur-darkGray rounded-lg glass-morphism p-8 text-center">
-          <p className="body-large font-medium mb-0">
-            This is the future of endurance — and we're building it now. 
-            <span className="block text-ndur-red mt-2">No fluff. No guesswork. Just pure performance intelligence.</span>
-          </p>
+        <div className="bg-gradient-to-br from-black via-ndur-darkGray to-black rounded-lg border border-ndur-red/20 p-8 md:p-10 text-center shadow-lg relative overflow-hidden">
+          {/* Background overlay for better text visibility */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+          
+          {/* Content with improved visibility */}
+          <div className="relative z-10">
+            <p className="text-xl md:text-2xl font-medium text-white mb-3">
+              This is the future of endurance — and we're building it now.
+            </p>
+            <p className="text-lg md:text-xl font-bold text-ndur-red">
+              No fluff. No guesswork. Just pure performance intelligence.
+            </p>
+          </div>
         </div>
       </div>
     </section>

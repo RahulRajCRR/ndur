@@ -35,14 +35,14 @@ const Hero: React.FC = () => {
       
       <div className="ndur-container relative z-10">
         <div className="max-w-3xl">
-          <span className="inline-block mb-6 text-ndur-red font-satoshi text-sm uppercase tracking-[0.2em] animate-item">Intelligence in Motion</span>
+          
           
           <h3 ref={titleRef} className="h3 text-white mb-8">
-            NDÜR.AI is an <span className="text-ndur-red">Intelligent Performance Ecosystem</span> built for endurance athletes.
+            NDÜR is an <span className="text-ndur-red">Intelligent Performance Ecosystem</span> built for endurance athletes.
           </h3>
           
           <div ref={contentRef} className="space-y-8">
-            <p className="body-large text-white/85 max-w-2xl animate-item font-urbanist">NDÜR combines cutting-edge technology with advanced AI to optimize your running to prevent injuries and maximize your endurance performance with lab-grade accuracy</p>
+            <p className="body-large text-white/85 max-w-2xl animate-item font-urbanist">NDÜR combines cutting-edge technology with advanced AI to optimize your movement to prevent injuries and maximize your endurance performance with lab-grade accuracy</p>
             
             <div className="flex flex-wrap items-center gap-4 animate-item mt-8">
               <Link to="/lab" className="primary-button rounded-full">Get started</Link>

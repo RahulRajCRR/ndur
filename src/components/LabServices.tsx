@@ -1,15 +1,14 @@
-
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
-  Activity, 
-  Bike, 
-  Users, 
-  ArrowDownToLine, 
-  Utensils, 
-  Pill 
+  Activity,
+  Footprints,
+  Users,
+  Dumbbell,
+  Utensils,
+  Pill
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -77,7 +76,7 @@ const LabServices = () => {
       description: "Unlock your body's energy systems through:<br/><br/><strong>VO₂ Max Testing:</strong> Determine your maximum oxygen uptake to tailor endurance training.<br/><br/><strong>Lactate Threshold Assessment:</strong> Identify the exercise intensity at which lactate begins to accumulate, optimizing training zones.<br/><br/>These insights enable precise training adjustments, enhancing aerobic capacity and performance."
     },
     {
-      icon: <Bike size={36} className="text-[#e23636]" />,
+      icon: <Footprints size={36} className="text-[#e23636]" />,
       title: "Running Mechanics",
       description: "Enhance your stride and prevent injuries with:<br/><br/><strong>2D/3D Gait Analysis:</strong> Assess movement patterns to identify inefficiencies.<br/><br/><strong>Joint Strength Assessments:</strong> Evaluate muscular imbalances and joint stability.<br/><br/><strong>Personalized Feedback:</strong> Receive tailored recommendations to improve running economy.<br/><br/>By refining biomechanics, athletes can achieve more efficient and safer movement patterns."
     },
@@ -87,7 +86,7 @@ const LabServices = () => {
       description: "Accelerate progress with individualized support:<br/><br/><strong>Customized Training Plans:</strong> Develop programs aligned with personal goals and data insights.<br/><br/><strong>Elite Feedback:</strong> Gain insights from certified coaches experienced in endurance sports.<br/><br/><strong>Technique Optimization:</strong> Fine-tune form and strategy for peak performance.<br/><br/>This personalized approach ensures that training is both effective and sustainable."
     },
     {
-      icon: <ArrowDownToLine size={36} className="text-[#e23636]" />,
+      icon: <Dumbbell size={36} className="text-[#e23636]" />,
       title: "Sports Recovery & Movement Therapy",
       description: "Promote recovery and mobility through:<br/><br/><strong>MELT Hand & Foot Program:</strong> Utilize self-treatment techniques to alleviate pain and improve flexibility.<br/><br/><strong>Sports Massage:</strong> Address muscle tension and enhance circulation.<br/><br/><strong>Small Group Classes:</strong> Engage in guided sessions focused on mobility and recovery.<br/><br/>These therapies support the body's natural healing processes, reducing downtime and enhancing performance."
     },

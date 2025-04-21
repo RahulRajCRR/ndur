@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -53,13 +52,13 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
           scrolled ? 'py-3 bg-black/95 backdrop-blur-sm shadow-lg' : 'py-5 bg-black/90'
         }`}
       >
-        <div className="ndur-container flex justify-between items-center">
+        <div className="ndur-container flex justify-between items-center relative z-[9999]">
           {/* Logo - Left aligned with smaller AI text */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex flex-col items-center md:items-start">
             <span className="text-2xl md:text-3xl font-days font-bold tracking-wider">
               <span className="text-white">N</span>
               <span className="text-white">D</span>
@@ -67,6 +66,7 @@ const Navbar: React.FC = () => {
               <span className="text-white">R</span>
               <span className="text-white text-base md:text-xl">.AI</span>
             </span>
+            <span className="text-xs text-ndur-red font-satoshi uppercase tracking-[-0.03em] mt0.5">Intelligence in Motion</span>
           </Link>
 
           {/* Desktop Navigation - Centered */}
@@ -117,10 +117,10 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center">
+          <div className="lg:hidden flex items-center relative z-[9999]">
             <button 
               onClick={toggleMenu}
-              className="text-white hover:text-ndur-red transition-colors"
+              className="text-white hover:text-ndur-red transition-colors p-2"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
@@ -131,7 +131,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu - Fixed positioning with proper z-index */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-[60px] bg-black/95 backdrop-blur-md z-[99] overflow-y-auto">
+          <div className="lg:hidden fixed inset-0 top-[60px] bg-black/95 backdrop-blur-md z-[9998] overflow-y-auto h-[calc(100vh-60px)]">
             <div className="ndur-container flex flex-col space-y-6 py-8 px-4">
               <Link to="/" className="nav-link py-3 text-xl" onClick={closeMenu}>Home</Link>
               {currentPath === '/lab' ? (
