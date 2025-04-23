@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,48 +10,54 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   useEffect(() => {
-    // Animation for fade-in elements
-    gsap.from('.fade-in', {
-      opacity: 0,
-      y: 30,
-      stagger: 0.15,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: "top 85%"
-      }
+    // Batch animations for better performance
+    const ctx = gsap.context(() => {
+      // Animation for fade-in elements with reduced stagger and duration
+      gsap.from('.fade-in', {
+        opacity: 0,
+        y: 20, // Reduced from 30
+        stagger: 0.1, // Reduced from 0.15
+        duration: 0.5, // Reduced from 0.8
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      // Animation for team members with reduced values
+      gsap.from('.team-member', {
+        opacity: 0,
+        y: 20, // Reduced from 50
+        stagger: 0.1, // Reduced from 0.2
+        duration: 0.5, // Reduced from 0.8
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: '.team-section',
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      // Animation for career items with reduced values
+      gsap.from('.career-item', {
+        opacity: 0,
+        y: 20, // Reduced from 50
+        stagger: 0.1, // Reduced from 0.2
+        duration: 0.5, // Reduced from 0.8
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: '.career-section',
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
     });
 
-    // Animation for career positions
-    gsap.from('.career-item', {
-      opacity: 0,
-      y: 50,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: '.career-section',
-        start: "top 75%"
-      }
-    });
-
-    // Animation for team members
-    gsap.from('.team-member', {
-      opacity: 0,
-      y: 50,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: '.team-section',
-        start: "top 75%"
-      }
-    });
-
+    // Cleanup
     return () => {
-      // Clean up ScrollTriggers when component unmounts
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ctx.revert(); // This will clean up all animations created by this context
     };
   }, []);
 
@@ -97,6 +102,7 @@ const About = () => {
                   src="/lovable-uploads/5a5da8df-a29e-4263-8f7c-ab922163f770.png" 
                   alt="NDÜR Lab Testing" 
                   className="w-full h-full object-cover"
+                  loading="lazy" // Add lazy loading
                 />
               </div>
             </div>

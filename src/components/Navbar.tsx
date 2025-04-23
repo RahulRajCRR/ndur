@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +39,14 @@ const Navbar: React.FC = () => {
     if (currentPath === '/lab') {
       const section = document.getElementById(sectionId);
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        const navbarHeight = 80; // Height of the navbar in pixels
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
         setIsMenuOpen(false);
       }
     }
@@ -47,6 +55,12 @@ const Navbar: React.FC = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
     setIsDropdownOpen(false);
+  };
+
+  const handleNavigation = (to: string) => {
+    closeMenu();
+    navigate(to);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -58,7 +72,7 @@ const Navbar: React.FC = () => {
       >
         <div className="ndur-container flex justify-between items-center relative z-[9999]">
           {/* Logo - Left aligned with smaller AI text */}
-          <Link to="/" className="flex flex-col items-center md:items-start">
+          <div onClick={() => handleNavigation('/')} className="cursor-pointer flex flex-col items-center md:items-start">
             <span className="text-2xl md:text-3xl font-days font-bold tracking-wider">
               <span className="text-white">N</span>
               <span className="text-white">D</span>
@@ -67,25 +81,25 @@ const Navbar: React.FC = () => {
               <span className="text-white text-base md:text-xl">.AI</span>
             </span>
             <span className="text-xs text-ndur-red font-satoshi uppercase tracking-[-0.03em] mt0.5">Intelligence in Motion</span>
-          </Link>
+          </div>
 
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex space-x-8">
-              <Link to="/" className="nav-link">Home</Link>
+              <button onClick={() => handleNavigation('/')} className="nav-link">Home</button>
               {currentPath === '/lab' ? (
                 <>
                   <button onClick={() => scrollToSection('packages')} className="nav-link">Packages</button>
                   <button onClick={() => scrollToSection('calculator')} className="nav-link">Test Calculator</button>
                 </>
               ) : (
-                <Link to="/lab" className="nav-link">Lab</Link>
+                <button onClick={() => handleNavigation('/lab')} className="nav-link">Lab</button>
               )}
-              <Link to="/about" className="nav-link">About Us</Link>
-              <Link to="/products" className="nav-link">Products</Link>
-              <Link to="/gallery" className="nav-link">Gallery</Link>
-              <Link to="/events" className="nav-link">Events</Link>
-              <Link to="/blog" className="nav-link">Blog</Link>
+              <button onClick={() => handleNavigation('/about')} className="nav-link">About Us</button>
+              <button onClick={() => handleNavigation('/products')} className="nav-link">Products</button>
+              <button onClick={() => handleNavigation('/gallery')} className="nav-link">Gallery</button>
+              <button onClick={() => handleNavigation('/events')} className="nav-link">Events</button>
+              <button onClick={() => handleNavigation('/blog')} className="nav-link">Blog</button>
               
               {/* Dropdown */}
               <div className="relative">
@@ -133,20 +147,20 @@ const Navbar: React.FC = () => {
         {isMenuOpen && (
           <div className="lg:hidden fixed inset-0 top-[60px] bg-black/95 backdrop-blur-md z-[9998] overflow-y-auto h-[calc(100vh-60px)]">
             <div className="ndur-container flex flex-col space-y-6 py-8 px-4">
-              <Link to="/" className="nav-link py-3 text-xl" onClick={closeMenu}>Home</Link>
+              <button onClick={() => handleNavigation('/')} className="nav-link py-3 text-xl">Home</button>
               {currentPath === '/lab' ? (
                 <>
                   <button onClick={() => scrollToSection('packages')} className="nav-link py-3 text-xl text-left">Packages</button>
                   <button onClick={() => scrollToSection('calculator')} className="nav-link py-3 text-xl text-left">Test Calculator</button>
                 </>
               ) : (
-                <Link to="/lab" className="nav-link py-3 text-xl" onClick={closeMenu}>Lab</Link>
+                <button onClick={() => handleNavigation('/lab')} className="nav-link py-3 text-xl">Lab</button>
               )}
-              <Link to="/about" className="nav-link py-3 text-xl" onClick={closeMenu}>About Us</Link>
-              <Link to="/products" className="nav-link py-3 text-xl" onClick={closeMenu}>Products</Link>
-              <Link to="/gallery" className="nav-link py-3 text-xl" onClick={closeMenu}>Gallery</Link>
-              <Link to="/events" className="nav-link py-3 text-xl" onClick={closeMenu}>Events</Link>
-              <Link to="/blog" className="nav-link py-3 text-xl" onClick={closeMenu}>Blog</Link>
+              <button onClick={() => handleNavigation('/about')} className="nav-link py-3 text-xl">About Us</button>
+              <button onClick={() => handleNavigation('/products')} className="nav-link py-3 text-xl">Products</button>
+              <button onClick={() => handleNavigation('/gallery')} className="nav-link py-3 text-xl">Gallery</button>
+              <button onClick={() => handleNavigation('/events')} className="nav-link py-3 text-xl">Events</button>
+              <button onClick={() => handleNavigation('/blog')} className="nav-link py-3 text-xl">Blog</button>
               
               {/* Mobile Dropdown */}
               <div className="py-3">

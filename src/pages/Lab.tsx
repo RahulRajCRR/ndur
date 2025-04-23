@@ -168,7 +168,7 @@ const Lab: React.FC = () => {
         <TestCarousel />
         
         {/* Testing Packages Section */}
-        <section ref={testingPackagesRef} id="packages" className="py-10 md:py-16 lg:py-24 bg-black">
+        <section ref={testingPackagesRef} id="packages" className="py-10 md:py-16 lg:py-24 bg-black scroll-mt-[100px]">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white mb-3 md:mb-4">Our Testing Packages</h2>
             <p className="text-center text-white/80 mb-8 md:mb-12 max-w-3xl mx-auto px-2 text-sm sm:text-base">
@@ -275,7 +275,7 @@ const Lab: React.FC = () => {
         </section>
         
         {/* Not Sure What You Need Section */}
-        <section ref={notSureRef} id="calculator" className="py-10 md:py-16 lg:py-24 bg-[#1a1f2e]">
+        <section ref={notSureRef} id="calculator" className="py-10 md:py-16 lg:py-24 bg-[#1a1f2e] scroll-mt-[100px]">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-16">
               {/* Left Column */}

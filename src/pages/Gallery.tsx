@@ -8,43 +8,64 @@ const galleryImages = [
     title: "VO₂ Max Testing",
     category: "lab",
     description: "Athletes performing high-intensity VO₂ max assessments in our lab.",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: 2, 
     title: "Gait Analysis Session",
     category: "lab",
     description: "3D motion capture for comprehensive running form analysis.",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: 3,
     title: "Recovery Session",
     category: "recovery",
     description: "MELT recovery technique session with our physiotherapist.",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: 4,
     title: "NDÜR Wearables",
     category: "products",
     description: "Our custom wearable devices that track advanced metrics.",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: 5,
     title: "Coaching Session",
     category: "coaching",
     description: "One-on-one coaching with our endurance experts.",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=600&fit=crop&auto=format"
   },
   {
     id: 6,
     title: "DEXA Body Scan",
     category: "lab",
     description: "Precision body composition analysis with our DEXA scanner.",
-    imageUrl: "/placeholder.svg"
+    imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&auto=format"
   },
+  {
+    id: 7,
+    title: "Performance Analysis",
+    category: "lab",
+    description: "Advanced performance metrics tracking and analysis.",
+    imageUrl: "https://images.unsplash.com/photo-1517838277536-f5fecbe10e27?w=800&h=600&fit=crop&auto=format"
+  },
+  {
+    id: 8,
+    title: "Strength Training",
+    category: "training",
+    description: "Specialized strength training for endurance athletes.",
+    imageUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=600&fit=crop&auto=format"
+  },
+  {
+    id: 9,
+    title: "Nutrition Planning",
+    category: "coaching",
+    description: "Personalized nutrition planning for optimal performance.",
+    imageUrl: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=600&fit=crop&auto=format"
+  }
 ];
 
 const Gallery: React.FC = () => {
@@ -60,12 +81,12 @@ const Gallery: React.FC = () => {
   const openLightbox = (index: number) => {
     setCurrentImage(index);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+    document.body.style.overflow = 'hidden';
   };
   
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'auto'; // Allow scrolling again
+    document.body.style.overflow = 'auto';
   };
   
   const nextImage = () => {
@@ -107,7 +128,7 @@ const Gallery: React.FC = () => {
                   : 'bg-white/10 text-white/80 hover:bg-white/20'
               }`}
             >
-              Lab Services
+              Lab
             </button>
             <button 
               onClick={() => setFilter('recovery')}
@@ -139,24 +160,36 @@ const Gallery: React.FC = () => {
             >
               Coaching
             </button>
+            <button 
+              onClick={() => setFilter('training')}
+              className={`px-4 py-2 rounded-full text-sm md:text-base ${
+                filter === 'training' 
+                  ? 'bg-[#e23636] text-white' 
+                  : 'bg-white/10 text-white/80 hover:bg-white/20'
+              }`}
+            >
+              Training
+            </button>
           </div>
           
           {/* Gallery Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredImages.map((image, index) => (
               <div 
-                key={image.id} 
-                className="relative group cursor-pointer overflow-hidden rounded-lg"
+                key={image.id}
+                className="group relative aspect-square overflow-hidden rounded-lg bg-black/40 border border-white/10 hover:border-[#e23636]/50 transition-all duration-300"
                 onClick={() => openLightbox(index)}
               >
-                <div className="aspect-w-16 aspect-h-9">
-                  <div className="w-full h-full bg-ndur-darkGray flex items-center justify-center overflow-hidden">
-                    <Image className="w-12 h-12 text-white/30" />
+                <img
+                  src={image.imageUrl}
+                  alt={image.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="text-white text-lg font-bold mb-1">{image.title}</h3>
+                    <p className="text-white/80 text-sm">{image.description}</p>
                   </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                  <h3 className="text-white font-bold text-lg md:text-xl">{image.title}</h3>
-                  <p className="text-white/80 text-sm md:text-base">{image.description}</p>
                 </div>
               </div>
             ))}
@@ -188,36 +221,44 @@ const Gallery: React.FC = () => {
         
         {/* Lightbox */}
         {lightboxOpen && (
-          <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center">
-            <button 
-              className="absolute top-4 right-4 text-white bg-black/40 p-2 rounded-full"
-              onClick={closeLightbox}
-            >
-              <X className="w-6 h-6" />
-            </button>
-            
-            <button 
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/40 p-2 rounded-full"
-              onClick={prevImage}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            
-            <div className="p-4 md:p-8 max-w-4xl w-full">
-              <div className="aspect-w-16 aspect-h-9 bg-ndur-darkGray rounded-lg mb-4 flex items-center justify-center">
-                <Image className="w-24 h-24 text-white/20" />
+          <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
+            <div className="relative max-w-4xl w-full mx-4">
+              <button 
+                onClick={closeLightbox}
+                className="absolute -top-4 -right-4 z-10 bg-black/60 p-2 rounded-full text-white hover:text-[#e23636] transition-colors hover:bg-black"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+              <img
+                src={filteredImages[currentImage].imageUrl}
+                alt={filteredImages[currentImage].title}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+              />
+              
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
+                <h3 className="text-white text-xl font-bold mb-1">
+                  {filteredImages[currentImage].title}
+                </h3>
+                <p className="text-white/80">
+                  {filteredImages[currentImage].description}
+                </p>
               </div>
               
-              <h3 className="text-white text-xl md:text-2xl font-bold">{filteredImages[currentImage].title}</h3>
-              <p className="text-white/80">{filteredImages[currentImage].description}</p>
+              <button 
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[#e23636] transition-colors"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
+              
+              <button 
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#e23636] transition-colors"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
             </div>
-            
-            <button 
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/40 p-2 rounded-full"
-              onClick={nextImage}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
           </div>
         )}
       </main>
