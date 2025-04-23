@@ -14,7 +14,7 @@ const Products = () => {
         <section className="py-8 md:py-12 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 px-2">
-              <span className="text-[#e23636]">Ndur AI Anklet</span>
+              <span className="text-[#e23636]">NDÜR AI Anklet</span>
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-8">
               Next-Gen Wearable for Smarter Running

@@ -69,7 +69,7 @@ const About = () => {
           <div className="ndur-container">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="fade-in text-4xl md:text-5xl lg:text-6xl font-inter font-bold mb-6 text-white">
-                About <span className="text-ndur-red">NDÜR.AI</span>
+                About <span className="text-ndur-red">NDÜR</span>
               </h1>
               <p className="fade-in text-white/80 text-lg md:text-xl lg:text-2xl mb-8 font-urbanist">
                 Democratizing Elite-Level Training Through AI-Powered Analysis
@@ -93,7 +93,7 @@ const About = () => {
                     After experiencing how data-driven decisions dramatically improved performance and prevented injuries, we asked ourselves: "Why should this level of insight only be available to professionals?"
                   </p>
                   <p>
-                    That question became our mission. We built NDÜR.AI to democratize access to elite-level sports science, making it accessible to serious athletes at every level – from ambitious weekend warriors to Olympic hopefuls.
+                    That question became our mission. We built NDÜR to democratize access to elite-level sports science, making it accessible to serious athletes at every level – from ambitious weekend warriors to Olympic hopefuls.
                   </p>
                 </div>
               </div>
@@ -130,7 +130,7 @@ const About = () => {
           <div className="ndur-container">
             <h2 className="text-3xl md:text-4xl font-inter font-bold mb-6 text-center text-white">Our <span className="text-ndur-red">Team</span></h2>
             <p className="text-white/80 text-center max-w-3xl mx-auto mb-12 font-urbanist">
-              Meet the experts behind NDÜR.AI. Our team combines decades of experience in sports science, technology, and elite athletics to deliver cutting-edge performance solutions.
+              Meet the experts behind NDÜR. Our team combines decades of experience in sports science, technology, and elite athletics to deliver cutting-edge performance solutions.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
