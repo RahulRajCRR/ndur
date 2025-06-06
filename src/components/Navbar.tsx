@@ -71,16 +71,13 @@ const Navbar: React.FC = () => {
         }`}
       >
         <div className="ndur-container flex justify-between items-center relative z-[9999]">
-          {/* Logo - Left aligned with smaller AI text */}
-          <div onClick={() => handleNavigation('/')} className="cursor-pointer flex flex-col items-center md:items-start">
-            <span className="text-2xl md:text-3xl font-days font-bold tracking-wider">
-              <span className="text-white">N</span>
-              <span className="text-white">D</span>
-              <span className="text-ndur-red">Ü</span>
-              <span className="text-white">R</span>
-              <span className="text-white text-base md:text-xl">.AI</span>
-            </span>
-            <span className="text-xs text-ndur-red font-satoshi uppercase tracking-[-0.03em] mt0.5">Intelligence in Motion</span>
+          {/* Logo - Left aligned */}
+          <div onClick={() => handleNavigation('/')} className="cursor-pointer flex items-center">
+            <img 
+              src="/images/logo.png" 
+              alt="NDÜR.AI Logo" 
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation - Centered */}

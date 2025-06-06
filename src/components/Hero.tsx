@@ -30,7 +30,16 @@ const Hero: React.FC = () => {
   return <section className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden bg-black">
       {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-gradient-to-br from-black via-ndur-darkGray to-black opacity-90"></div>
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-ndur-darkGray to-black opacity-70"></div>
       </div>
       
       <div className="ndur-container relative z-10">
