@@ -33,15 +33,12 @@ const Footer: React.FC<FooterProps> = ({ showMap = false }) => {
           <div>
             <div className="mb-6">
               <Link to="/" className="inline-block mb-4">
-                <div className="flex flex-col items-start">
-                  <span className="text-3xl font-days font-bold tracking-wider">
-                    <span className="text-white">N</span>
-                    <span className="text-white">D</span>
-                    <span className="text-ndur-red">Ü</span>
-                    <span className="text-white">R</span>
-                    <span className="text-white text-[1.5rem]">.AI</span>
-                  </span>
-                  <span className="text-xs text-ndur-red font-satoshi uppercase tracking-[-0.01em] mt0.5">Intelligence in Motion</span>
+                <div className="flex items-center">
+                  <img 
+                    src="/images/logo.png" 
+                    alt="NDÜR.AI Logo" 
+                    className="h-14 w-auto"
+                  />
                 </div>
               </Link>
               <p className="text-white/70 mb-6 font-urbanist max-w-[280px]">
