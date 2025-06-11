@@ -132,49 +132,77 @@ const About = () => {
             <p className="text-white/80 text-center max-w-3xl mx-auto mb-12 font-urbanist">
               Meet the experts behind NDÜR. Our team combines decades of experience in sports science, technology, and elite athletics to deliver cutting-edge performance solutions.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
-              {/* Team Member 1 */}
-              <div className="team-member">
+            <div className="flex flex-row flex-wrap justify-center gap-8">
+              <div className="mt-2">
                 <TeamMember
-                  name="Dr. Sarah Chen"
-                  title="Founder & CEO"
-                  bio="Former Olympic athlete with a PhD in Sports Physiology. Sarah pioneered NDÜR's core technology after experiencing firsthand how data-driven training transformed her own athletic career."
-                  imgSrc="/lovable-uploads/42293f73-c9e8-43fd-b752-cf73e45bc3b3.png"
-                  icon={<Dumbbell className="text-ndur-red" size={20} />}
+                  name="Manjunath"
+                  title="Founder"
+                  description="A visionary leader driving NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/manjunath.png"
+                  bgColor="bg-purple-200"
                 />
               </div>
-
-              {/* Team Member 2 */}
-              <div className="team-member">
+              <div className="mt-32">
                 <TeamMember
-                  name="Marcus Johnson"
-                  title="CTO"
-                  bio="AI expert with previous experience at leading tech companies. Marcus leads our engineering team, translating complex biomechanical data into actionable insights for athletes."
-                  imgSrc="/lovable-uploads/155b3f70-4470-4125-8076-5ae898f66f2f.png"
-                  icon={<Code className="text-ndur-red" size={20} />}
+                  name="Dolly"
+                  title="Founder"
+                  description="A dedicated founder with expertise in sports science and performance analysis, helping shape NDUR's innovative approach to athletic training."
+                  imgSrc="/images/team/dolly.png"
+                  bgColor="bg-green-200"
                 />
               </div>
-
-              {/* Team Member 3 */}
-              <div className="team-member">
+              <div className="mt-2">
                 <TeamMember
-                  name="Dr. Elena Rodriguez"
-                  title="Head of Research"
-                  bio="PhD in Biomechanics with 15+ years in sports science research. Elena oversees our testing protocols and ensures our analytics are backed by rigorous science."
-                  imgSrc="/lovable-uploads/b83c278c-5f6a-420d-80a2-ec9861479df8.png"
-                  icon={<Microscope className="text-ndur-red" size={20} />}
+                  name="Armutha"
+                  title="Team Member"
+                  description="A dedicated team member contributing to NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/armutha.png"
+                  bgColor="bg-blue-200"
                 />
               </div>
-
-              {/* Team Member 4 */}
-              <div className="team-member">
+              <div className="mt-32">
                 <TeamMember
-                  name="James Wilson"
-                  title="Athletic Performance Director"
-                  bio="Former elite coach with experience at the highest levels of sport. James bridges the gap between our technology and real-world athletic performance."
-                  imgSrc="/lovable-uploads/55e6e6f1-2e19-45c8-81c2-49a9b716381e.png"
-                  icon={<UserRound className="text-ndur-red" size={20} />}
+                  name="Gabriel"
+                  title="Team Lead"
+                  description="Leading the team with expertise and vision, driving NDUR's mission forward through innovative solutions and strategic direction."
+                  imgSrc="/images/team/gabriel.png"
+                  bgColor="bg-teal-200"
+                />
+              </div>
+              <div className="mt-2">
+                <TeamMember
+                  name="Rahul"
+                  title="Team Member"
+                  description="A dedicated team member contributing to NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/rahul.png"
+                  bgColor="bg-orange-200"
+                />
+              </div>
+              <div className="mt-32">
+                <TeamMember
+                  name="Ajith"
+                  title="Full Stack Developer"
+                  description="Expert in full-stack development, building robust and scalable solutions that power NDUR's innovative platform."
+                  imgSrc="/images/team/ajith.png"
+                  bgColor="bg-indigo-200"
+                />
+              </div>
+              <div className="mt-2">
+                <TeamMember
+                  name="Nate"
+                  title="Architect"
+                  description="Architecting the future of sports technology with innovative solutions and cutting-edge design patterns."
+                  imgSrc="/images/team/nate.png"
+                  bgColor="bg-yellow-200"
+                />
+              </div>
+              <div className="mt-32">
+                <TeamMember
+                  name="Sujith"
+                  title="Team Member"
+                  description="A dedicated team member contributing to NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/sujith.png"
+                  bgColor="bg-pink-200"
                 />
               </div>
             </div>
