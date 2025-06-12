@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Lab from "./pages/Lab";
 import Contact from "./pages/Contact";
 import Events from "./pages/Events";
+import Products from "./pages/Products";
 import NotFound from "./pages/NotFound";
 import Partnership from "./pages/Partnership";
 import { Toaster } from "sonner";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/lab" element={<Layout><Lab /></Layout>} />
         <Route path="/contact" element={<Layout><Contact /></Layout>} />
         <Route path="/events" element={<Layout><Events /></Layout>} />
+        <Route path="/products" element={<Layout><Products /></Layout>} />
         <Route path="/partnership" element={<Layout><Partnership /></Layout>} />
         <Route path="*" element={<Layout><NotFound /></Layout>} />
       </Routes>

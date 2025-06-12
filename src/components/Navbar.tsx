@@ -7,8 +7,6 @@ const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,13 +16,6 @@ const Navbar: React.FC = () => {
       } else {
         setScrolled(false);
       }
-      // Auto-hide/show navbar on scroll direction
-      if (window.scrollY > lastScrollY && window.scrollY > 100) {
-        setShowNavbar(false); // scrolling down
-      } else {
-        setShowNavbar(true); // scrolling up
-      }
-      setLastScrollY(window.scrollY);
     };
 
     const updatePath = () => {
@@ -39,7 +30,7 @@ const Navbar: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('popstate', updatePath);
     };
-  }, [lastScrollY]);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
@@ -59,7 +50,7 @@ const Navbar: React.FC = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-transparent'
-      } ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}
+      }`}
     >
       <div className="ndur-container">
         <div className="flex items-center justify-between h-20">
