@@ -65,8 +65,16 @@ const About = () => {
     <div className="min-h-screen animated-bg">
       <main>
         {/* Hero Section */}
-        <section className="hero-section py-16 md:py-24 lg:py-32">
-          <div className="ndur-container">
+        <section className="hero-section py-16 md:py-24 lg:py-32 relative">
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="/images/about-hero.jpeg" 
+              alt="About NDÜR Background" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-black via-black/80 to-black/60"></div>
+          </div>
+          <div className="ndur-container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="fade-in text-4xl md:text-5xl lg:text-6xl font-inter font-bold mb-6 text-white">
                 About <span className="text-ndur-red">NDÜR</span>
@@ -82,7 +90,7 @@ const About = () => {
         {/* Why We Built NDÜR Section */}
         <section className="py-16 md:py-24 bg-black">
           <div className="ndur-container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-3xl mx-auto text-center">
               <div className="fade-in">
                 <h2 className="text-3xl md:text-4xl font-inter font-bold mb-6 text-white">Why We Built <span className="text-ndur-red">NDÜR</span></h2>
                 <div className="space-y-6 text-white/80 font-urbanist">
@@ -96,14 +104,6 @@ const About = () => {
                     That question became our mission. We built NDÜR to democratize access to elite-level sports science, making it accessible to serious athletes at every level – from ambitious weekend warriors to Olympic hopefuls.
                   </p>
                 </div>
-              </div>
-              <div className="fade-in rounded-xl overflow-hidden shadow-xl">
-                <img 
-                  src="/lovable-uploads/5a5da8df-a29e-4263-8f7c-ab922163f770.png" 
-                  alt="NDÜR Lab Testing" 
-                  className="w-full h-full object-cover"
-                  loading="lazy" // Add lazy loading
-                />
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
+import { Instagram, Linkedin, Youtube } from 'lucide-react';
 
 interface FooterProps {
   showMap?: boolean;
@@ -51,7 +51,7 @@ const Footer: React.FC<FooterProps> = ({ showMap = false }) => {
             
             <div>
               <span className="block text-white mb-4 font-urbanist">Follow Us</span>
-              <div className="flex space-x-4">
+              <div className="flex gap-4">
                 <a 
                   href="https://instagram.com" 
                   target="_blank" 
@@ -78,15 +78,6 @@ const Footer: React.FC<FooterProps> = ({ showMap = false }) => {
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5 text-white" />
-                </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-ndur-red hover:border-ndur-red transition-all"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-5 h-5 text-white" />
                 </a>
               </div>
             </div>

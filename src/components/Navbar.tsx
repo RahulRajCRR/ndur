@@ -7,6 +7,8 @@ const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +18,13 @@ const Navbar: React.FC = () => {
       } else {
         setScrolled(false);
       }
+      // Auto-hide/show navbar on scroll direction
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setShowNavbar(false); // scrolling down
+      } else {
+        setShowNavbar(true); // scrolling up
+      }
+      setLastScrollY(window.scrollY);
     };
 
     const updatePath = () => {
@@ -30,27 +39,10 @@ const Navbar: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('popstate', updatePath);
     };
-  }, []);
+  }, [lastScrollY]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-  
-  const scrollToSection = (sectionId: string) => {
-    if (currentPath === '/lab') {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        const navbarHeight = 80; // Height of the navbar in pixels
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        setIsMenuOpen(false);
-      }
-    }
-  };
   
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -64,130 +56,153 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <>
-      <nav 
-        className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
-          scrolled ? 'py-3 bg-black/95 backdrop-blur-sm shadow-lg' : 'py-5 bg-black/90'
-        }`}
-      >
-        <div className="ndur-container flex justify-between items-center relative z-[9999]">
-          {/* Logo - Left aligned */}
-          <div onClick={() => handleNavigation('/')} className="cursor-pointer flex items-center">
-            <img 
-              src="/images/logo.png" 
-              alt="NDÜR.AI Logo" 
-              className="h-10 w-auto"
-            />
-          </div>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-transparent'
+      } ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}
+    >
+      <div className="ndur-container">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img src="/images/logo.png" alt="NDÜR Logo" className="h-12" />
+          </Link>
 
           {/* Desktop Navigation - Centered */}
-          <div className="hidden lg:flex items-center justify-center flex-1">
-            <div className="flex space-x-8">
-              <button onClick={() => handleNavigation('/')} className="nav-link">Home</button>
-              {currentPath === '/lab' ? (
-                <>
-                  <button onClick={() => scrollToSection('packages')} className="nav-link">Packages</button>
-                  <button onClick={() => scrollToSection('calculator')} className="nav-link">Test Calculator</button>
-                </>
-              ) : (
-                <button onClick={() => handleNavigation('/lab')} className="nav-link">Lab</button>
-              )}
-              <button onClick={() => handleNavigation('/about')} className="nav-link">About Us</button>
-              <button onClick={() => handleNavigation('/products')} className="nav-link">Products</button>
-              <button onClick={() => handleNavigation('/gallery')} className="nav-link">Gallery</button>
-              <button onClick={() => handleNavigation('/events')} className="nav-link">Events</button>
-              <button onClick={() => handleNavigation('/blog')} className="nav-link">Blog</button>
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <div className="flex items-center space-x-8">
+              <Link to="/" className={`nav-link ${currentPath === '/' ? 'text-[#e23636]' : 'text-white'}`}>
+                Home
+              </Link>
+              <Link to="/lab" className={`nav-link ${currentPath === '/lab' ? 'text-[#e23636]' : 'text-white'}`}>
+                Endurance Lab
+              </Link>
+              <Link to="/about" className={`nav-link ${currentPath === '/about' ? 'text-[#e23636]' : 'text-white'}`}>
+                About Us
+              </Link>
+              <Link to="/events" className={`nav-link ${currentPath === '/events' ? 'text-[#e23636]' : 'text-white'}`}>
+                Events
+              </Link>
+              <Link to="/products" className={`nav-link ${currentPath === '/products' ? 'text-[#e23636]' : 'text-white'}`}>
+                Products
+              </Link>
               
-              {/* Dropdown */}
+              {/* More Dropdown */}
               <div className="relative">
-                <button 
-                  onClick={toggleDropdown} 
-                  className="flex items-center nav-link"
-                  aria-expanded={isDropdownOpen}
-                  aria-controls="dropdown-menu"
+                <button
+                  onClick={toggleDropdown}
+                  className="flex items-center space-x-1 text-white hover:text-[#e23636] transition-colors"
                 >
-                  More <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  <span>More</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {isDropdownOpen && (
-                  <div 
-                    id="dropdown-menu"
-                    className="absolute top-full right-0 mt-2 w-48 bg-black border border-white/10 rounded-lg shadow-lg py-2 z-[101]"
-                  >
-                    <Link to="/partnership" className="block px-4 py-3 text-white hover:bg-white/10 font-urbanist font-medium text-sm transition-colors" onClick={closeMenu}>Partnerships</Link>
-                    <Link to="/press" className="block px-4 py-3 text-white hover:bg-white/10 font-urbanist font-medium text-sm transition-colors" onClick={closeMenu}>Press</Link>
+                  <div className="absolute right-0 mt-2 w-48 bg-black/90 backdrop-blur-md rounded-lg shadow-lg py-2">
+                    <Link
+                      to="/gallery"
+                      className="block px-4 py-2 text-white hover:bg-[#e23636] hover:text-white transition-colors"
+                      onClick={closeMenu}
+                    >
+                      Gallery
+                    </Link>
+                    <Link
+                      to="/partnership"
+                      className="block px-4 py-2 text-white hover:bg-[#e23636] hover:text-white transition-colors"
+                      onClick={closeMenu}
+                    >
+                      Partnerships
+                    </Link>
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Right side button - Changed to "Contact Us" */}
-          <div className="hidden lg:flex">
-            <Link to="/contact" className="primary-button">Contact Us</Link>
+          {/* CTA Button */}
+          <div className="hidden md:block">
+            <Link
+              to="/lab"
+              className="bg-[#e23636] hover:bg-[#e23636]/90 text-white px-6 py-2 rounded-full transition-colors"
+            >
+              Step Into the Lab
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center relative z-[9999]">
-            <button 
-              onClick={toggleMenu}
-              className="text-white hover:text-ndur-red transition-colors p-2"
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-white hover:text-[#e23636] transition-colors"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
-        {/* Mobile Menu - Fixed positioning with proper z-index */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-[60px] bg-black/95 backdrop-blur-md z-[9998] overflow-y-auto h-[calc(100vh-60px)]">
-            <div className="ndur-container flex flex-col space-y-6 py-8 px-4">
-              <button onClick={() => handleNavigation('/')} className="nav-link py-3 text-xl">Home</button>
-              {currentPath === '/lab' ? (
-                <>
-                  <button onClick={() => scrollToSection('packages')} className="nav-link py-3 text-xl text-left">Packages</button>
-                  <button onClick={() => scrollToSection('calculator')} className="nav-link py-3 text-xl text-left">Test Calculator</button>
-                </>
-              ) : (
-                <button onClick={() => handleNavigation('/lab')} className="nav-link py-3 text-xl">Lab</button>
-              )}
-              <button onClick={() => handleNavigation('/about')} className="nav-link py-3 text-xl">About Us</button>
-              <button onClick={() => handleNavigation('/products')} className="nav-link py-3 text-xl">Products</button>
-              <button onClick={() => handleNavigation('/gallery')} className="nav-link py-3 text-xl">Gallery</button>
-              <button onClick={() => handleNavigation('/events')} className="nav-link py-3 text-xl">Events</button>
-              <button onClick={() => handleNavigation('/blog')} className="nav-link py-3 text-xl">Blog</button>
-              
-              {/* Mobile Dropdown */}
-              <div className="py-3">
-                <button 
-                  onClick={toggleDropdown} 
-                  className="flex items-center text-white text-xl font-urbanist font-medium"
-                  aria-expanded={isDropdownOpen}
-                >
-                  More <ChevronDown className={`ml-2 w-5 h-5 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                {isDropdownOpen && (
-                  <div className="pl-4 mt-4 space-y-4">
-                    <Link to="/partnership" className="block text-white hover:text-ndur-red text-lg font-urbanist font-medium transition-colors py-2" onClick={closeMenu}>Partnerships</Link>
-                    <Link to="/press" className="block text-white hover:text-ndur-red text-lg font-urbanist font-medium transition-colors py-2" onClick={closeMenu}>Press</Link>
-                  </div>
-                )}
-              </div>
-              
-              <div className="flex flex-col space-y-4 pt-6">
-                <Link to="/contact" className="primary-button text-center w-full" onClick={closeMenu}>Contact Us</Link>
-              </div>
+          <div className="md:hidden bg-black/95 backdrop-blur-md">
+            <div className="px-4 py-4 space-y-4">
+              <Link
+                to="/"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                Home
+              </Link>
+              <Link
+                to="/lab"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                Endurance Lab
+              </Link>
+              <Link
+                to="/about"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                About Us
+              </Link>
+              <Link
+                to="/events"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                Events
+              </Link>
+              <Link
+                to="/products"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                Products
+              </Link>
+              <Link
+                to="/gallery"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                Gallery
+              </Link>
+              <Link
+                to="/partnership"
+                className="block text-white hover:text-[#e23636] transition-colors"
+                onClick={closeMenu}
+              >
+                Partnerships
+              </Link>
+              <Link
+                to="/lab"
+                className="block bg-[#e23636] hover:bg-[#e23636]/90 text-white px-6 py-2 rounded-full text-center transition-colors"
+                onClick={closeMenu}
+              >
+                Step Into the Lab
+              </Link>
             </div>
           </div>
         )}
-      </nav>
-      
-      {/* Spacer div with sufficient height to prevent content from being hidden under the navbar */}
-      <div className="h-[80px] md:h-[100px] w-full"></div>
-    </>
+      </div>
+    </nav>
   );
 };
 

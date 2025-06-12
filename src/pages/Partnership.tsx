@@ -12,7 +12,7 @@ const partners = [
     description: 'Revive Restore Health PHYSIOTHERAPY & FITNESS CENTRE.'
   },
   {
-    src: 'https://avdynam.com/wp-content/uploads/2023/10/AV-Dynamics-Logo-White-1.png',
+    src: '/images/AVD-logo.png',
     alt: 'AV Dynamics Logo',
     description: 'AV Dynamics: Experts in AI surveillance, Events and advanced technology integration.'
   }
@@ -20,12 +20,25 @@ const partners = [
 
 const Partnership = () => (
   <div className="min-h-screen flex flex-col justify-center items-center bg-black py-24">
-    <h1 className="text-3xl md:text-4xl font-bold text-white mb-12">Our Partners</h1>
-    <div className="flex flex-row gap-12 justify-center items-start">
+    <h1
+      className="font-bold mb-12"
+      style={{
+        fontSize: '5rem',
+        color: '#d7263d',
+        marginTop: '3rem',
+        textAlign: 'center',
+        lineHeight: 1.1
+      }}
+    >
+      Our Partners
+    </h1>
+    <div className="flex flex-row gap-12 justify-center items-start flex-wrap">
       {partners.map((partner, idx) => (
         <div key={idx} className="flex flex-col items-center text-center max-w-xs">
-          <img src={partner.src} alt={partner.alt} className="h-16 w-auto object-contain rounded-lg bg-white/10 p-4 mb-4" />
-          <p className="text-white/80 text-sm">{partner.description}</p>
+          <div className="bg-white rounded-full w-48 h-48 flex items-center justify-center mb-6 shadow-lg">
+            <img src={partner.src} alt={partner.alt} className="max-h-32 max-w-32 object-contain" />
+          </div>
+          <p className="text-white/80 text-base font-medium">{partner.description}</p>
         </div>
       ))}
     </div>
