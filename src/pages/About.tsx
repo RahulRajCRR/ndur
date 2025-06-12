@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, UserRound, Code, Microscope, Dumbbell } from 'lucide-react';
+import { ArrowRight, UserRound, Code, Microscope, Dumbbell, UploadCloud } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import TeamMember from '../components/TeamMember';
 
@@ -216,7 +216,6 @@ const About = () => {
             <p className="text-white/80 text-center max-w-3xl mx-auto mb-12 font-urbanist">
               Join our team of innovators, scientists, and athletes who are pushing the boundaries of sports performance technology. We're always looking for passionate people to help us build the future of endurance training.
             </p>
-            
             {/* Contact Box */}
             <div className="max-w-xl mx-auto">
               <div className="career-item rounded-xl bg-white/5 p-8 border border-white/10 text-center">
@@ -224,8 +223,30 @@ const About = () => {
                 <p className="text-white/70 mb-6 font-urbanist">
                   Send your work and profile to us. We'd love to hear from talented individuals who are passionate about revolutionizing athletic performance.
                 </p>
-                <div className="bg-black/30 p-4 rounded-lg inline-block">
-                  <p className="text-ndur-red font-mono text-xl">hello@ndur.ai</p>
+                <div className="bg-black/30 p-4 rounded-lg inline-block mb-6">
+                  <p className="text-ndur-red font-mono text-xl">info@ndur.ai</p>
+                </div>
+                {/* Portfolio Upload Drop Box - Stylish */}
+                <div
+                  className="border-2 border-dashed border-[#e23636] rounded-xl bg-black/40 p-8 mb-4 flex flex-col items-center justify-center relative transition hover:border-[#ff4d4d]"
+                  style={{ minHeight: 220 }}
+                  onDragOver={e => e.preventDefault()}
+                  onDrop={e => e.preventDefault()}
+                >
+                  <UploadCloud className="w-10 h-10 text-[#e23636] mb-4" />
+                  <p className="font-bold text-lg text-white mb-2">Drag Files Here to Add</p>
+                  <span className="text-white/60 mb-4">or</span>
+                  <label htmlFor="portfolio-upload" className="inline-block">
+                    <input
+                      id="portfolio-upload"
+                      type="file"
+                      className="hidden"
+                      accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.rar,.jpg,.jpeg,.png,.webp,.txt"
+                    />
+                    <span className="bg-[#e23636] hover:bg-[#c82333] text-white px-6 py-2 rounded-full font-semibold cursor-pointer transition-colors text-base shadow-lg">
+                      Choose Files
+                    </span>
+                  </label>
                 </div>
               </div>
             </div>

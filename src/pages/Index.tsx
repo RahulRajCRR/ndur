@@ -1,9 +1,8 @@
-
 import React, { useEffect, useRef } from 'react';
 import Hero from '../components/Hero';
-import FeatureGrid from '../components/FeatureGrid';
-import WhyJoin from '../components/WhyJoin';
-import LabServices from '../components/LabServices';
+// import FeatureGrid from '../components/FeatureGrid';
+// import WhyJoin from '../components/WhyJoin';
+// import LabServices from '../components/LabServices';
 import CTA from '../components/CTA';
 
 // Import GSAP for animations
@@ -53,9 +52,9 @@ const Index: React.FC = () => {
     <div ref={pageRef} className="min-h-screen bg-black text-white">
       <main className="overflow-hidden">
         <Hero />
-        <FeatureGrid />
-        <WhyJoin />
-        <LabServices />
+        {/* <FeatureGrid /> */}
+        {/* <WhyJoin /> */}
+        {/* <LabServices /> */}
         <CTA />
       </main>
     </div>
