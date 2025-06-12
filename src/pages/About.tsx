@@ -136,7 +136,7 @@ const About = () => {
               <div className="mt-2">
                 <TeamMember
                   name="Manjunath"
-                  title="Founder"
+                  title="Co-Founder"
                   description="A visionary leader driving NDUR's mission of democratizing elite-level training through AI-powered analysis."
                   imgSrc="/images/team/manjunath.png"
                   bgColor="bg-purple-200"
@@ -145,7 +145,7 @@ const About = () => {
               <div className="mt-32">
                 <TeamMember
                   name="Dolly"
-                  title="Founder"
+                  title="Co-Founder"
                   description="A dedicated founder with expertise in sports science and performance analysis, helping shape NDUR's innovative approach to athletic training."
                   imgSrc="/images/team/dolly.png"
                   bgColor="bg-green-200"
@@ -163,7 +163,7 @@ const About = () => {
               <div className="mt-32">
                 <TeamMember
                   name="Gabriel"
-                  title="Team Lead"
+                  title="Co-Founder"
                   description="Leading the team with expertise and vision, driving NDUR's mission forward through innovative solutions and strategic direction."
                   imgSrc="/images/team/gabriel.png"
                   bgColor="bg-teal-200"
