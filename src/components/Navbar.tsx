@@ -16,6 +16,11 @@ const Navbar: React.FC = () => {
       } else {
         setScrolled(false);
       }
+      // Close mobile menu on scroll
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+        setIsDropdownOpen(false);
+      }
     };
 
     const updatePath = () => {
@@ -30,7 +35,7 @@ const Navbar: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('popstate', updatePath);
     };
-  }, []);
+  }, [isMenuOpen]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
@@ -62,51 +67,12 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center justify-center flex-1">
             <div className="flex items-center space-x-8">
-              <Link to="/" className={`nav-link ${currentPath === '/' ? 'text-[#e23636]' : 'text-white'}`}>
-                Home
-              </Link>
-              <Link to="/lab" className={`nav-link ${currentPath === '/lab' ? 'text-[#e23636]' : 'text-white'}`}>
-                Endurance Lab
-              </Link>
-              <Link to="/about" className={`nav-link ${currentPath === '/about' ? 'text-[#e23636]' : 'text-white'}`}>
-                About Us
-              </Link>
-              <Link to="/events" className={`nav-link ${currentPath === '/events' ? 'text-[#e23636]' : 'text-white'}`}>
-                Events
-              </Link>
-              <Link to="/products" className={`nav-link ${currentPath === '/products' ? 'text-[#e23636]' : 'text-white'}`}>
-                Products
-              </Link>
-              
-              {/* More Dropdown */}
-              <div className="relative">
-                <button
-                  onClick={toggleDropdown}
-                  className="flex items-center space-x-1 text-white hover:text-[#e23636] transition-colors"
-                >
-                  <span>More</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-black/90 backdrop-blur-md rounded-lg shadow-lg py-2">
-                    <Link
-                      to="/gallery"
-                      className="block px-4 py-2 text-white hover:bg-[#e23636] hover:text-white transition-colors"
-                      onClick={closeMenu}
-                    >
-                      Gallery
-                    </Link>
-                    <Link
-                      to="/partnership"
-                      className="block px-4 py-2 text-white hover:bg-[#e23636] hover:text-white transition-colors"
-                      onClick={closeMenu}
-                    >
-                      Partnerships
-                    </Link>
-                  </div>
-                )}
-              </div>
+              <Link to="/" className={`nav-link ${currentPath === '/' ? 'text-[#e23636]' : 'text-white'}`}>Home</Link>
+              <Link to="/lab" className={`nav-link ${currentPath === '/lab' ? 'text-[#e23636]' : 'text-white'}`}>Endurance Lab</Link>
+              <Link to="/about" className={`nav-link ${currentPath === '/about' ? 'text-[#e23636]' : 'text-white'}`}>About Us</Link>
+              <Link to="/events" className={`nav-link ${currentPath === '/events' ? 'text-[#e23636]' : 'text-white'}`}>Events</Link>
+              <Link to="/products" className={`nav-link ${currentPath === '/products' ? 'text-[#e23636]' : 'text-white'}`}>Products</Link>
+              <Link to="/partnership" className={`nav-link ${currentPath === '/partnership' ? 'text-[#e23636]' : 'text-white'}`}>Partnerships</Link>
             </div>
           </div>
 
@@ -133,62 +99,13 @@ const Navbar: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-black/95 backdrop-blur-md">
             <div className="px-4 py-4 space-y-4">
-              <Link
-                to="/"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                Home
-              </Link>
-              <Link
-                to="/lab"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                Endurance Lab
-              </Link>
-              <Link
-                to="/about"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                About Us
-              </Link>
-              <Link
-                to="/events"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                Events
-              </Link>
-              <Link
-                to="/products"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                Products
-              </Link>
-              <Link
-                to="/gallery"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                Gallery
-              </Link>
-              <Link
-                to="/partnership"
-                className="block text-white hover:text-[#e23636] transition-colors"
-                onClick={closeMenu}
-              >
-                Partnerships
-              </Link>
-              <Link
-                to="/lab"
-                className="block bg-[#e23636] hover:bg-[#e23636]/90 text-white px-6 py-2 rounded-full text-center transition-colors"
-                onClick={closeMenu}
-              >
-                Step Into the Lab
-              </Link>
+              <Link to="/" className="block text-white hover:text-[#e23636] transition-colors" onClick={closeMenu}>Home</Link>
+              <Link to="/lab" className="block text-white hover:text-[#e23636] transition-colors" onClick={closeMenu}>Endurance Lab</Link>
+              <Link to="/about" className="block text-white hover:text-[#e23636] transition-colors" onClick={closeMenu}>About Us</Link>
+              <Link to="/events" className="block text-white hover:text-[#e23636] transition-colors" onClick={closeMenu}>Events</Link>
+              <Link to="/products" className="block text-white hover:text-[#e23636] transition-colors" onClick={closeMenu}>Products</Link>
+              <Link to="/partnership" className="block text-white hover:text-[#e23636] transition-colors" onClick={closeMenu}>Partnerships</Link>
+              <Link to="/lab" className="block bg-[#e23636] hover:bg-[#e23636]/90 text-white px-6 py-2 rounded-full text-center transition-colors" onClick={closeMenu}>Step Into the Lab</Link>
             </div>
           </div>
         )}

@@ -146,7 +146,7 @@ const About = () => {
                 <TeamMember
                   name="Dolly"
                   title="Co-Founder"
-                  description="A dedicated founder with expertise in sports science and performance analysis, helping shape NDUR's innovative approach to athletic training."
+                  description="Ultra-marathoner turned innovator. Bridging raw endurance with AI-driven insights to redefine human performance."
                   imgSrc="/images/team/dolly.png"
                   bgColor="bg-green-200"
                 />
@@ -163,7 +163,7 @@ const About = () => {
               <div className="mt-32">
                 <TeamMember
                   name="Gabriel"
-                  title="Co-Founder"
+                  title=""
                   description="Leading the team with expertise and vision, driving NDUR's mission forward through innovative solutions and strategic direction."
                   imgSrc="/images/team/gabriel.png"
                   bgColor="bg-teal-200"
@@ -190,8 +190,8 @@ const About = () => {
               <div className="mt-2">
                 <TeamMember
                   name="Nate"
-                  title="Architect"
-                  description="Architecting the future of sports technology with innovative solutions and cutting-edge design patterns."
+                  title="AI Alchemist"
+                  description="Transforming athletic instinct into algorithmic intelligence — because the future of endurance is coded, not guessed.."
                   imgSrc="/images/team/nate.png"
                   bgColor="bg-yellow-200"
                 />

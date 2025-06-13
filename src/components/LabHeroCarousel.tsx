@@ -6,39 +6,52 @@ const slides = [
     id: 1,
     image: '/images/lab-hero-1.png',
     title: 'VO₂ Max Testing',
-    description: 'Precision performance analysis for elite athletes'
+    description: `Measures how much oxygen your body uses during intense exercise—key for endurance and aerobic fitness. Reveals how well your heart, lungs, and muscles perform under stress.`,
+    quote: "\"NDÜR turns VO₂ Max into a training superpower.\" Paired with AI, it creates adaptive zones, guides recovery, and tracks progress like a pro coach.",
+    overlayOpacity: 0.85
+  },
+  {
+    id: 6,
+    image: '/images/lab-hero-6.png',
+    title: 'Lactate Threshold Test',
+    description: `Identifies the point where fatigue starts by measuring blood lactate during a treadmill or cycle test. Helps build precise training zones for stamina and peak output.`,
+    quote: "\"NDÜR makes this test practical, affordable, and impactful.\" AI translates your results into training strategies that boost performance and recovery.",
+    overlayOpacity: 1.0
+  },
+  {
+    id: 5,
+    image: '/images/lab-hero-5.png',
+    title: 'Body Composition Analysis',
+    description: `Uses BIA to estimate fat, muscle, and hydration—giving better insights than weight alone. Helps tailor goals for fat loss, strength, and metabolic health.`,
+    quote: "\"NDÜR combines body composition with performance metrics to deliver a holistic view of your fitness.\" It fine-tunes training and recovery in real time.",
+    overlayOpacity: 1.4
+  },
+  {
+    id: 3,
+    image: '/images/lab-hero-3.png',
+    title: 'Force Distribution Analysis',
+    description: `Force plates track power, balance, and symmetry in movement. Critical for injury prevention and building stronger, more efficient performance patterns.`,
+    quote: "\"NDÜR's biomechanical analysis boosts training precision.\" Wearable data reveals movement gaps for smarter technique and safer progress.",
+    overlayOpacity: 0.8
+  },
+  {
+    id: 4,
+    image: '/images/lab-hero-4.png',
+    title: 'Foot Pressure Scanner',
+    description: `Scans pressure patterns across your feet to detect imbalances and gait issues. Great for improving posture, footwear, and running efficiency.`,
+    quote: "\"NDÜR's foot pressure analysis completes your movement profile.\" Combines data to reduce strain, improve form, and lower injury risk.",
+    overlayOpacity: 0.75
   },
   {
     id: 2,
     image: '/images/lab-hero-2.png',
     title: 'Gait Analysis',
-    description: 'Advanced biomechanical assessment'
+    description: `Breaks down stride, cadence, and symmetry to detect inefficiencies and risks. Tracks movement in real time for smarter running technique.`,
+    quote: "\"NDÜR transforms gait analysis into actionable insights.\" Our AI decodes your form to guide personalized corrections and injury prevention.",
+    overlayOpacity: 0.8
   },
-  {
-    id: 3,
-    image: '/images/lab-hero-3.png',
-    title: 'Force Deck Testing',
-    description: 'Measure your power output with precision'
-  },
-  {
-    id: 4,
-    image: '/images/lab-hero-4.png',
-    title: 'Body Composition',
-    description: 'Comprehensive body analysis'
-  },
-  {
-    id: 5,
-    image: '/images/lab-hero-5.png',
-    title: 'Recovery Analysis',
-    description: 'Optimize your recovery process'
-  },
-  {
-    id: 6,
-    image: '/images/lab-hero-6.png',
-    title: 'Performance Lab',
-    description: 'State-of-the-art testing facility'
-  }
 ];
+
 
 const LabHeroCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -46,7 +59,7 @@ const LabHeroCarousel: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, []);
@@ -73,18 +86,31 @@ const LabHeroCarousel: React.FC = () => {
             src={slide.image}
             alt={slide.title}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-black/70 to-transparent" />
+          <div
+            className="absolute inset-0 bg-gradient-to-br from-black to-transparent"
+            style={{ background: `linear-gradient(to bottom right, rgba(0,0,0,${slide.overlayOpacity}), rgba(0,0,0,0.0))` }}
+          />
           
           {/* Content */}
           <div className="absolute inset-0 flex items-center">
             <div className="ndur-container">
               <div className="max-w-3xl">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                <h1 className="h1 mb-4">
                   {slide.title}
                 </h1>
-                <p className="text-xl md:text-2xl text-white/80 mb-8">
+                <p className="text-base md:text-2xl text-white/80 mb-4 font-urbanist">
                   {slide.description}
+                </p>
+                <p className="text-base md:text-2xl font-semibold font-urbanist text-white/80">
+                  {(() => {
+                    const match = slide.quote.match(/"([^"]*)"(.*)/);
+                    if (match) {
+                      return <><span style={{ color: '#e23636' }}>&quot;{match[1]}&quot;</span>{match[2]}</>;
+                    }
+                    return slide.quote;
+                  })()}
                 </p>
               </div>
             </div>
