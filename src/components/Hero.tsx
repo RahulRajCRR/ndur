@@ -29,16 +29,18 @@ const Hero: React.FC = () => {
   }, []);
   return <section className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden bg-black">
       {/* Background with overlay */}
-      <div className="absolute inset-0 z-0">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
+      <div className="absolute inset-0 z-0 w-full h-full">
+        <div className="w-full h-full aspect-[16/9] md:aspect-auto">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/videos/hero.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-br from-black via-ndur-darkGray to-black opacity-70"></div>
       </div>
       
