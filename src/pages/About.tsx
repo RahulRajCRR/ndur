@@ -132,7 +132,84 @@ const About = () => {
             <p className="text-white/80 text-center max-w-3xl mx-auto mb-12 font-urbanist">
               Meet the experts behind NDÜR. Our team combines decades of experience in sports science, technology, and elite athletics to deliver cutting-edge performance solutions.
             </p>
-            <div className="flex flex-row flex-wrap justify-center gap-8">
+            {/* Mobile: 2 cards per row in zig-zag, Desktop: Original layout */}
+            <div className="grid grid-cols-2 gap-4 md:hidden">
+              <div className="mt-2">
+                <TeamMember
+                  name="Manjunath"
+                  title="Co-Founder"
+                  description="A visionary leader driving NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/manjunath.png"
+                  bgColor="bg-purple-200"
+                />
+              </div>
+              <div className="mt-16">
+                <TeamMember
+                  name="Dolly"
+                  title="Co-Founder"
+                  description="Ultra-marathoner turned innovator. Bridging raw endurance with AI-driven insights to redefine human performance."
+                  imgSrc="/images/team/dolly.png"
+                  bgColor="bg-green-200"
+                />
+              </div>
+              <div className="mt-2">
+                <TeamMember
+                  name="Armutha"
+                  title="Team Member"
+                  description="A dedicated team member contributing to NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/armutha.png"
+                  bgColor="bg-blue-200"
+                />
+              </div>
+              <div className="mt-16">
+                <TeamMember
+                  name="Gabriel"
+                  title=""
+                  description="Leading the team with expertise and vision, driving NDUR's mission forward through innovative solutions and strategic direction."
+                  imgSrc="/images/team/gabriel.png"
+                  bgColor="bg-teal-200"
+                />
+              </div>
+              <div className="mt-2">
+                <TeamMember
+                  name="Rahul"
+                  title="Team Member"
+                  description="A dedicated team member contributing to NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/rahul.png"
+                  bgColor="bg-orange-200"
+                />
+              </div>
+              <div className="mt-16">
+                <TeamMember
+                  name="Ajith"
+                  title="Full Stack Developer"
+                  description="Expert in full-stack development, building robust and scalable solutions that power NDUR's innovative platform."
+                  imgSrc="/images/team/ajith.png"
+                  bgColor="bg-indigo-200"
+                />
+              </div>
+              <div className="mt-2">
+                <TeamMember
+                  name="Nate"
+                  title="AI Alchemist"
+                  description="Transforming athletic instinct into algorithmic intelligence — because the future of endurance is coded, not guessed.."
+                  imgSrc="/images/team/nate.png"
+                  bgColor="bg-yellow-200"
+                />
+              </div>
+              <div className="mt-16">
+                <TeamMember
+                  name="Sujith"
+                  title="Team Member"
+                  description="A dedicated team member contributing to NDUR's mission of democratizing elite-level training through AI-powered analysis."
+                  imgSrc="/images/team/sujith.png"
+                  bgColor="bg-pink-200"
+                />
+              </div>
+            </div>
+            
+            {/* Desktop: Original layout */}
+            <div className="hidden md:flex flex-row flex-wrap justify-center gap-8">
               <div className="mt-2">
                 <TeamMember
                   name="Manjunath"
