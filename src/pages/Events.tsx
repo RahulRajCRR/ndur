@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Calendar, Users, Trophy, MapPin, Clock, TrendingUp } from 'lucide-react';
@@ -62,55 +61,17 @@ const Events = () => {
                     Athletes received personalized insights to optimize their running form, improve efficiency, and reduce injury risk.
                   </p>
                 </div>
-                <div className="mt-auto">
-                  <button className="primary-button">View Event Details</button>
-                </div>
               </div>
-              <div className="relative h-full min-h-[300px] md:min-h-full">
+              <div className="relative h-full min-h-[300px] md:min-h-full flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/852f2dc5-bc94-4da9-826b-2fc415d63f58.png" 
                   alt="NDÜR.AI at Freshworks Chennai Marathon" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto max-h-[400px] object-contain rounded-xl shadow-lg"
+                  style={{ maxWidth: '600px' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
               </div>
             </div>
-          </div>
-          
-          {/* Event Gallery */}
-          <div className="mb-12">
-            <h3 className="text-2xl md:text-3xl font-satoshi font-bold mb-6">Event Gallery</h3>
-            <p className="text-white/80 max-w-3xl font-urbanist text-lg mb-8">
-              See how NDÜR.AI transformed runners' experience at the Freshworks Chennai Marathon with our innovative gait analysis technology.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div key={index} className="rounded-xl overflow-hidden border border-white/5 bg-ndur-darkGray hover:shadow-lg transition-all group">
-                <div className="aspect-w-16 aspect-h-12 relative">
-                  <AspectRatio ratio={4/3} className="bg-ndur-darkGray">
-                    {index === 1 ? (
-                      <img
-                        src="/lovable-uploads/ede1ec98-2d00-4524-b07f-3cc0222eb2c6.png"
-                        alt={`NDÜR.AI Marathon Event ${index}`}
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-ndur-darkGray to-black">
-                        <span className="text-ndur-red font-satoshi font-bold text-xl">Event Image {index}</span>
-                      </div>
-                    )}
-                  </AspectRatio>
-                </div>
-                <div className="p-4">
-                  <h4 className="font-satoshi font-medium text-lg mb-2">Marathon Moment {index}</h4>
-                  <p className="text-white/60 text-sm font-urbanist">
-                    Runners experiencing real-time analysis with NDÜR.AI technology
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
           
           {/* How NDÜR.AI Enhances Marathon Performance */}

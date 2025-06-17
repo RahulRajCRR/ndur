@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,12 +16,10 @@ const contactFormSchema = z.object({
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
 
-type ContactFormValues = z.infer<typeof contactFormSchema>;
-
 const Contact = () => {
   const { toast } = useToast();
   
-  const form = useForm<ContactFormValues>({
+  const form = useForm({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: '',
@@ -32,19 +29,36 @@ const Contact = () => {
     },
   });
 
-  function onSubmit(data: ContactFormValues) {
-    // In a real application, you would send this data to your backend
-    console.log(data);
-    
-    // Show success message
-    toast({
-      title: "Message Sent",
-      description: "We've received your message and will get back to you soon.",
-    });
-    
-    // Reset the form
-    form.reset();
+  function onSubmit(data: any) {
+    const formData = new URLSearchParams();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('phone', data.phone || '');
+    formData.append('message', data.message);
+  
+    fetch("https://script.google.com/macros/s/AKfycbzoDyEdWA02ssxlHR4bHkvMPKjXgfJBKoQ3Nylh82xtqk_Wsl6XABA5s9pmGMIDGrZEbQ/exec", {
+      method: "POST",
+      body: formData, // ✔️ Not JSON
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast({
+          title: "Success!",
+          description: "Your message has been sent successfully.",
+        });
+        form.reset();
+      })
+      .catch((err) => {
+        console.error("Form submission error:", err);
+        toast({
+          title: "Error",
+          description: "There was an issue submitting the form. Please try again.",
+          variant: "destructive",
+        });
+      });
   }
+  
+  
 
   return (
     <main className="bg-black text-white min-h-screen">

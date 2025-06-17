@@ -52,13 +52,13 @@ const Lab: React.FC = () => {
         <section ref={testingPackagesRef} id="packages" className="py-10 md:py-16 lg:py-24 bg-black scroll-mt-[100px]">
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">
-              <span className="text-white block mb-6">Our New Testing Packages</span> 
+              <span className="text-white block mb-5">Our New Testing Packages</span> 
               <span 
-                className="block text-3xl sm:text-4xl md:text-6xl font-black animated-glow-outline"
+                className="block text-3xl sm:text-4xl md:text-6xl font-black"
                 style={{
                   color: 'transparent',
-                  WebkitTextStroke: '2px #e23636',
-                  textShadow: '0 0 8px #e23636, 0 0 16px #e23636',
+                  WebkitTextStroke: '2.3px #e23636',
+                  textShadow: 'none',
                 }}
               >
                 Coming Soon

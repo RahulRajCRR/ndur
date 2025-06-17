@@ -1,14 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, UserRound, Code, Microscope, Dumbbell, UploadCloud } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import TeamMember from '../components/TeamMember';
+import { uploadToGoogleDrive } from '@/services/googleService';
+import { useToast } from '@/hooks/use-toast';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const { toast } = useToast();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [email, setEmail] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+
   useEffect(() => {
     // Batch animations for better performance
     const ctx = gsap.context(() => {
@@ -60,6 +67,36 @@ const About = () => {
       ctx.revert(); // This will clean up all animations created by this context
     };
   }, []);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedFile || !email) return;
+    
+    // Open Google Drive upload link in a new tab
+    const driveUrl = 'https://drive.google.com/drive/folders/1WqU94D3qnBRblkqunTUOXdZBxdEaThgE?usp=sharing'; // Replace with your Google Drive upload URL
+    const driveWindow = window.open(driveUrl, '_blank');
+    
+    if (driveWindow) {
+      toast({
+        title: "Upload Link Opened",
+        description: "Please upload your file in the new tab. Make sure to include your email in the file name.",
+      });
+      setEmail('');
+      setSelectedFile(null);
+    } else {
+      toast({
+        title: "Error",
+        description: "Please allow popups for this website to upload your file.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen animated-bg">
@@ -303,15 +340,22 @@ const About = () => {
                 <div className="bg-black/30 p-4 rounded-lg inline-block mb-6">
                   <p className="text-ndur-red font-mono text-xl">info@ndur.ai</p>
                 </div>
-                {/* Portfolio Upload Drop Box - Stylish */}
+                {/* Portfolio Upload Drop Box */}
                 <div
                   className="border-2 border-dashed border-[#e23636] rounded-xl bg-black/40 p-8 mb-4 flex flex-col items-center justify-center relative transition hover:border-[#ff4d4d]"
                   style={{ minHeight: 220 }}
                   onDragOver={e => e.preventDefault()}
-                  onDrop={e => e.preventDefault()}
+                  onDrop={e => {
+                    e.preventDefault();
+                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                      setSelectedFile(e.dataTransfer.files[0]);
+                    }
+                  }}
                 >
                   <UploadCloud className="w-10 h-10 text-[#e23636] mb-4" />
-                  <p className="font-bold text-lg text-white mb-2">Drag Files Here to Add</p>
+                  <p className="font-bold text-lg text-white mb-2">
+                    {selectedFile ? selectedFile.name : 'Drag Files Here to Add'}
+                  </p>
                   <span className="text-white/60 mb-4">or</span>
                   <label htmlFor="portfolio-upload" className="inline-block">
                     <input
@@ -319,12 +363,34 @@ const About = () => {
                       type="file"
                       className="hidden"
                       accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.rar,.jpg,.jpeg,.png,.webp,.txt"
+                      onChange={handleFileChange}
                     />
                     <span className="bg-[#e23636] hover:bg-[#c82333] text-white px-6 py-2 rounded-full font-semibold cursor-pointer transition-colors text-base shadow-lg">
                       Choose Files
                     </span>
                   </label>
                 </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-white font-medium mb-1">Email:</label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full px-4 py-2 rounded bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#e23636]"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-[#e23636] text-white rounded-full py-3 text-lg font-bold"
+                    disabled={!selectedFile || !email}
+                  >
+                    Upload Application
+                  </Button>
+                </form>
               </div>
             </div>
             

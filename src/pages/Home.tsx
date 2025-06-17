@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MessageCircle } from 'lucide-react';
+import WaitlistForm from '@/components/WaitlistForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,7 +46,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <video
@@ -92,6 +93,24 @@ const Home: React.FC = () => {
               Get Started
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Waitlist Section */}
+      <section className="py-16 md:py-24">
+        <div className="ndur-container">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-inter font-bold mb-6 text-white">
+              Be the First to <span className="text-ndur-red">Experience</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-300 font-urbanist">
+              Join our exclusive waitlist to get early access to NDÜR's revolutionary sports performance technology.
+            </p>
+          </div>
+          
+          <div className="max-w-xl mx-auto">
+            <WaitlistForm />
+          </div>
         </div>
       </section>
 
